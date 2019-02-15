@@ -11,6 +11,22 @@ import org.springframework.http.MediaType
 @RestController
 @RequestMapping("users")
 class UserController {
+    /*
+    * GET /users
+    */
+    @GetMapping("", produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun index(): List<UserJson> {
+        val users = listOf(
+            UserJson(User("yudai", 1)),
+            UserJson(User("onigra", 2)),
+            UserJson(User("suzuki", 3))
+        )
+        return users
+    }
+
+    /*
+    * GET /users/{id}
+    */
     @GetMapping("{id}", produces = [MediaType.APPLICATION_JSON_VALUE])
     fun show(@PathVariable("id") id: Int): UserJson {
         val user = User("yudai", id)
