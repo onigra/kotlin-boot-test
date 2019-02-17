@@ -20,9 +20,9 @@ class UserController(
     @GetMapping("", produces = [MediaType.APPLICATION_JSON_VALUE])
     fun index(): List<UserJson> {
         val users = listOf(
-            UserJson(User("yudai", 1)),
-            UserJson(User("onigra", 2)),
-            UserJson(User("suzuki", 3))
+            UserJson(User(1, "yudai", 10)),
+            UserJson(User(2, "onigra", 20)),
+            UserJson(User(3, "suzuki", 30))
         )
         return users
     }
