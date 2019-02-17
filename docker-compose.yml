@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  pg:
+    image: postgres:11.2
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: test_development
+    ports:
+      - 5432:5432
+    volumes:
+      - ./tmp/postgresql:/var/lib/postgresql
+      - ./db/initdb.d:/docker-entrypoint-initdb.d
