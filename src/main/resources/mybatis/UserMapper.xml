@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.onigra.test.infrastructure.datasource.user.UserMapper">
+    <resultMap id="User" type="com.onigra.test.model.User">
+        <constructor>
+            <arg name="id" column="id"/>
+            <arg name="name" column="name"/>
+            <arg name="age" column="age"/>
+        </constructor>
+    </resultMap>
+
+    <select id="findBy" resultMap="User">
+        SELECT
+          id,
+          name,
+          age
+        FROM
+          users 
+        WHERE
+          users.id = #{value}
+    </select>
+</mapper>
