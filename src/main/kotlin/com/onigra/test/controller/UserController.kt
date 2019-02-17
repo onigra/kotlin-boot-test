@@ -5,12 +5,15 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import com.onigra.test.model.User
+import com.onigra.test.model.UserRepository
 import com.onigra.test.view.json.UserJson
 import org.springframework.http.MediaType
 
 @RestController
 @RequestMapping("users")
-class UserController {
+class UserController(
+    private val userRepository: UserRepository
+) {
     /*
     * GET /users
     */
@@ -29,7 +32,7 @@ class UserController {
     */
     @GetMapping("{id}", produces = [MediaType.APPLICATION_JSON_VALUE])
     fun show(@PathVariable("id") id: Int): UserJson {
-        val user = User("yudai", id)
-        return UserJson(user)
+        val user = userRepository.findBy(id)
+        return UserJson(user!!)
     }
 }
